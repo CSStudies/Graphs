@@ -1,3 +1,5 @@
+import random
+
 class User:
     def __init__(self, name):
         self.name = name
@@ -43,10 +45,21 @@ class SocialGraph:
         self.users = {}
         self.friendships = {}
         # !!!! IMPLEMENT ME
-
+            
         # Add users
-
+        # creates user key with num of relatinships as the value.
+        for i in range(num_users):
+            self.users[i + 1] = int(random.random() * num_users)
+            self.friendships[i+1] = set()
         # Create friendships
+            j = 0
+            while j < (self.users[i+1]):
+                friend = int(random.random() * self.users[i+1])
+                if friend not in self.friendships[i+1]:
+                    self.friendships[i+1].add(friend)
+                j+=1
+
+    print(f'users and num of relationships / {self.users}')
 
     def get_all_social_paths(self, user_id):
         """
