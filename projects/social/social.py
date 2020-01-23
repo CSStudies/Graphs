@@ -81,13 +81,14 @@ class SocialGraph:
         queue.enqueue(self.friendships[1]) 
         while queue.size() > 0:
             path = queue.dequeue()
-            vertex = path[-1]
-            if vertex not in visited:
+            
+            vertex = path.pop()
+            if vertex not in visited and vertex is not None:
                 if vertex == user_id:
                     return path
                 visited[user_id] = []
-                vistied[user_id].append(vertex)
-                for next_vertex in self.friendships[vert]:
+                visited[user_id].append(vertex)
+                for next_vertex in self.friendships[vertex]:
                     new_path = list(path)
                     new_path.append(next_vertex)
                     queue.enqueue(new_path)
