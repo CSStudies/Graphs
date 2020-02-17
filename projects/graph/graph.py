@@ -13,14 +13,14 @@ class Graph:
         """
         Add a vertex to the graph.
         """
-        self.vertices[vertex_id] = { }
+        self.vertices[vertex_id] = set()
 
     def add_edge(self, v1, v2):
         """
         Add a directed edge to the graph.
         """
-        if v1 in self.vertices and v2 in self.vertices
-            self.vertices[v1].append(v2)
+        if v1 in self.vertices and v2 in self.vertices:
+            self.vertices[v1].add(v2)
 
     def get_neighbors(self, vertex_id):
         """
@@ -46,13 +46,14 @@ class Graph:
         q = Queue()
         q.enqueue(starting_vertex)
 
-        visted = { }
+        visited = set()
         while q.size() > 0:
             vert = q.dequeue()
             if vert not in visited:
-                visted.append(vert)
+                visited.add(vert)
                 for edge in self.get_neighbors(vert):
                     q.enqueue(edge)
+        print(visited)
 
     def dft(self, starting_vertex):
         """
@@ -71,13 +72,18 @@ class Graph:
 
         s = Stack()
         s.push(starting_vertex)
-        visted = {}
+        visited = set()
+        print(f'visited: {visited}')
         while s.size() > 0:
             vert = s.pop()
-            if vert not in visted:
-                visted.append(vert)
+            if vert not in visited:
+                print(f'current vertex: {vert}')
+                visited.add(vert)
+                print(f'visited: {visited}')
                 for edge in self.get_neighbors(vert):
-                    stack.push(edge)
+                    print(f' push edge onto stack: {edge}')
+                    s.push(edge)
+        print(visited)
 
     def dft_recursive(self, starting_vertex):
         """
@@ -94,7 +100,29 @@ class Graph:
         starting_vertex to destination_vertex in
         breath-first order.
         """
-        pass  # TODO
+        # Create a queue/stack as appropriate
+        # Put the starting vert in queue or stack
+        # Make a set to visit edges
+        # While queue/stack not empty 
+        ## Pop the first item 
+        ## If not visited
+        ### add it to visted
+        ### For each edge
+        #### add edge to stack/queue  
+
+        pass # TODO: IF destination_vertex not in self.vertices
+
+        # q = Queue()
+        # q.enqueue(starting_vertex)
+        # path = []
+        # while q.size() > 0:
+        #     vert = q.dequeue()
+        #     if vert not in path:
+        #         path.append(vert)
+        #         if vert is destination_vertex:
+        #             return path
+        #         for edge in self.get_neighbors(vert):
+        #             q.enqueue(edge)
 
     def dfs(self, starting_vertex, destination_vertex):
         """
