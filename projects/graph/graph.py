@@ -19,7 +19,8 @@ class Graph:
         """
         Add a directed edge to the graph.
         """
-        self.vertices[v1].append(v2)
+        if v1 in self.vertices and v2 in self.vertices
+            self.vertices[v1].append(v2)
 
     def get_neighbors(self, vertex_id):
         """
@@ -32,14 +33,51 @@ class Graph:
         Print each vertex in breadth-first order
         beginning from starting_vertex.
         """
-        pass  # TODO
+        # Create a queue/stack as appropriate
+        # Put the starting vert in queue or stack
+        # Make a set to visit edges
+        # While queue/stack not empty 
+        ## Pop the first item 
+        ## If not visited
+        ### add it to visted
+        ### For each edge
+        #### add edge to stack/queue  
+
+        q = Queue()
+        q.enqueue(starting_vertex)
+
+        visted = { }
+        while q.size() > 0:
+            vert = q.dequeue()
+            if vert not in visited:
+                visted.append(vert)
+                for edge in self.get_neighbors(vert):
+                    q.enqueue(edge)
 
     def dft(self, starting_vertex):
         """
         Print each vertex in depth-first order
         beginning from starting_vertex.
         """
-        pass  # TODO
+        # Create a queue/stack as appropriate
+        # Put the starting vert in queue or stack
+        # Make a set to visit edges
+        # While queue/stack not empty 
+        ## Pop the first item 
+        ## If not visited
+        ### add it to visted
+        ### For each edge
+        #### add edge to stack/queue  
+
+        s = Stack()
+        s.push(starting_vertex)
+        visted = {}
+        while s.size() > 0:
+            vert = s.pop()
+            if vert not in visted:
+                visted.append(vert)
+                for edge in self.get_neighbors(vert):
+                    stack.push(edge)
 
     def dft_recursive(self, starting_vertex):
         """
