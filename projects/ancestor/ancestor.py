@@ -45,22 +45,28 @@ def earliest_ancestor(ancestors, person):
         if relative not in visited:
             visited.add(relative)
             for ancestor in tree[relative]:
-                if tree[relative] is False:
-                    tree[relative].add(-1)
-                    print(f'updated tree {tree}')
-                else:
-                    path_list = list(path)
-                    path_list.append(ancestor)
-                    og_list.append(ancestor)
-                    q.enqueue(path_list)
-        print(f'Relative: {relative}')
-        print(f'visited: {visited} \n path {path}')
-    return og_list[-1]
+                # if tree[relative] is False:
+                #     tree[relative].add(-1)
+                #     print(f'updated tree {tree}')
+                # else:
+                path_list = list(path)
+                path_list.append(ancestor)
+                og_list.append(ancestor)
+                q.enqueue(path_list)
+                
+        print(f'Relative: {relative} \nvisited: {visited} \npath {path} \n')
+    print(f'OG List: {og_list} \n')
+    
+    if len(og_list) > 0:
+        return og_list[-1]
+    else:
+        return -1
         
 
 
 if __name__=='__main__':
     family_tree(lineage)
+    earliest_ancestor(lineage, 2)
     earliest_ancestor(lineage, 6)
 
     # them : Who are you
