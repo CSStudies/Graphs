@@ -112,17 +112,37 @@ class Graph:
 
         pass # TODO: IF destination_vertex not in self.vertices
 
+        q = Queue()
+        q.enqueue([starting_vertex])
+        visited = set()
+        while q.size() > 0:
+            path = q.dequeue()
+            vert = path[-1]
+            if vert not in visited:
+                if vert == destination_vertex:
+                    print(f'BFS path: {path} ')
+                    return path
+                for edge in self.get_neighbors(vert):
+                    path_list = list(path)
+                    path_list.append(edge)
+                    q.enqueue(path_list)
+
         # q = Queue()
         # q.enqueue(starting_vertex)
-        # path = []
+        # visited = set()
+        # path = list()
         # while q.size() > 0:
-        #     vert = q.dequeue()
-        #     if vert not in path:
-        #         path.append(vert)
+        #     vert = q.dequeue()            
+        #     if vert not in visited:
         #         if vert is destination_vertex:
         #             return path
+        #         visited.add(vert)
+        #         # path.append(vert)
         #         for edge in self.get_neighbors(vert):
         #             q.enqueue(edge)
+        #             path.append(vert)
+        # print(f'BFS Path: {path}')
+        # return path
 
     def dfs(self, starting_vertex, destination_vertex):
         """
