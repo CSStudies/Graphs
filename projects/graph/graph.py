@@ -101,14 +101,16 @@ class Graph:
         breath-first order.
         """
         # Create a queue/stack as appropriate
-        # Put the starting vert in queue or stack
+        # Put a list with the starting vert in queue or stack
         # Make a set to visit edges
         # While queue/stack not empty 
-        ## Pop the first item 
-        ## If not visited
+        ## Pop the list out of stack or queue
+        ## vertex is last item in list
+        ## If vertex not visited
         ### add it to visted
         ### For each edge
-        #### add edge to stack/queue  
+        #### add edge to list 
+        #### add list to queue of stack
 
         pass # TODO: IF destination_vertex not in self.vertices
 
@@ -150,7 +152,32 @@ class Graph:
         starting_vertex to destination_vertex in
         depth-first order.
         """
-        pass  # TODO
+        # Create a queue/stack as appropriate
+        # Put a list with the starting vert in queue or stack
+        # Make a set to visit edges
+        # While queue/stack not empty 
+        ## Pop the list out of stack or queue
+        ## vertex is last item in list
+        ## If vertex not visited
+        ### add it to visted
+        ### For each edge
+        #### add edge to list 
+        #### add list to queue of stack
+
+        s = Stack()
+        s.push([starting_vertex])
+        visited = set()
+        while s.size() > 0 :
+            path = s.pop()
+            vert = path[-1]
+            if vert not in visited:
+                if vert == destination_vertex:
+                    print(f'DFS Path: {path} ')
+                    return path
+                for edge in self.get_neighbors(vert):
+                    path_list = list(path)
+                    path_list.append(edge)
+                    s.push(path_list)
 
     def dfs_recursive(self, starting_vertex):
         """
